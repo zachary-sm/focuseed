@@ -1,5 +1,5 @@
 import unittest
-from utils.timer_tools import *
+from utils.timer_tools import format_minutes
 
 
 class TestFormatMinutes(unittest.TestCase):

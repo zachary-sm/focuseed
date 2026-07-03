@@ -1,5 +1,5 @@
 import unittest
-from commands.countdown import *
+from commands.countdown import start_countdown
 from unittest.mock import patch
 
 class TestCountdown(unittest.TestCase):

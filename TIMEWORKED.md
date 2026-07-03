@@ -1,0 +1,7 @@
+Since this is a personal project that is meant to take me between 20 and 40 hours, I am tracking time worked here. This will be removed when the project is finished. Ignore this if you're not me.
+
+July 1st - 1h
+
+July 2nd - 3h
+
+July 3rd - 
