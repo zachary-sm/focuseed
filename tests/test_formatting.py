@@ -22,8 +22,7 @@ class TestFormatMinutes(unittest.TestCase):
         self.assertEqual(format_minutes(1), "1m")
 
     def test_zero_minutes(self):
-        with self.assertRaises(ValueError):
-            format_minutes(0)
+        self.assertEqual(format_minutes(0), "0m")
 
     def test_negative_minutes(self):
         with self.assertRaises(ValueError):

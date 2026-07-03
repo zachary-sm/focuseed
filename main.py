@@ -1,6 +1,6 @@
 import utils.save_tools
 import argparse
-import commands.countdown
+import commands.countdown, commands.stopwatch
 from datetime import *
 
 def main():
@@ -37,7 +37,7 @@ def main():
 
     match args.command:
         case "stopwatch":
-            pass
+            commands.stopwatch.start_stopwatch(args.note)
         case "countdown":
             commands.countdown.start_countdown(args.minutes, args.note)
 

@@ -1,2 +1,36 @@
-def start_stopwatch():
-    pass
+import utils.timer_tools
+import utils.save_tools
+import time
+from datetime import datetime
+
+def start_stopwatch(note: str):
+    """
+        Initiates a focus session that is exited by the user with ctrl+C.
+
+        args:
+            note: The session note.
+    """
+    
+    seconds = 0
+    start_time = datetime.now()
+
+
+    print("Started stopwatch.")
+    print("Press Ctrl+C to stop and save your session.")
+    try:
+        while True:
+            mins = seconds // 60
+            
+            # Update current line - for now, hardcode seconds
+            print(f"\rElapsed: {utils.timer_tools.format_minutes(mins)} {seconds}s", end="", flush=True)
+
+            time.sleep(1)
+
+            seconds += 1
+    except KeyboardInterrupt:
+        print()
+        print(f"Successfully focused for {utils.timer_tools.format_minutes(mins)}")
+        
+        end_time = datetime.now()
+        utils.save_tools.save_session(start_time, end_time, note)
+        
