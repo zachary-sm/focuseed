@@ -1,16 +1,15 @@
 import unittest
-from utils.timer_tools import format_minutes
-
+from utils.timer_tools import format_minutes, format_seconds
 
 class TestFormatMinutes(unittest.TestCase):
     def test_under_one_hour(self):
         self.assertEqual(format_minutes(23), "23m")
 
     def test_one_hour(self):
-        self.assertEqual(format_minutes(60), "1h")
+        self.assertEqual(format_minutes(60), "1h 0m")
 
     def test_multiple_hours(self):
-        self.assertEqual(format_minutes(120), "2h")
+        self.assertEqual(format_minutes(120), "2h 0m")
 
     def test_hour_and_minutes(self):
         self.assertEqual(format_minutes(62), "1h 2m")
@@ -27,6 +26,24 @@ class TestFormatMinutes(unittest.TestCase):
     def test_negative_minutes(self):
         with self.assertRaises(ValueError):
             format_minutes(-52)
+
+
+class TestFormatSeconds(unittest.TestCase):
+    def test_under_one_minute(self):
+        self.assertEqual(format_seconds(23), "0m 23s")
+
+    def test_one_minute(self):
+        self.assertEqual(format_seconds(60), "1m 0s")
+
+    def test_one_hour(self):
+        self.assertEqual(format_seconds(3600), "1h 0m 0s")
+
+    def test_over_one_hour(self):
+        self.assertEqual(format_seconds(4211), "1h 10m 11s")
+
+    def test_negative_seconds(self):
+        with self.assertRaises(ValueError):
+            format_seconds(-52)
 
 
 if __name__ == "__main__":

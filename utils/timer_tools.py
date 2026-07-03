@@ -17,11 +17,6 @@ def format_minutes(minutes: int) -> str:
     """
     if minutes < 0:
         raise ValueError("Must be 0 minutes or greater to convert.")
-
-    if minutes == 0:
-        return "0m"
-    if minutes % 60 == 0:
-        return f"{minutes // 60}h"
     if minutes < 60:
         return f"{minutes}m"
     else:
@@ -42,7 +37,13 @@ def format_seconds(seconds: int) -> str:
         Returns:
             str: The formatted duration.
     """
-    pass
+    
+    minutes_component = seconds // 60
+    seconds_component = seconds % 60
+    
+    minutes_formatted = format_minutes(minutes_component)
+
+    return f"{minutes_formatted} {seconds_component}s"
 
 def session_duration_minutes(start_str: str, end_str: str) -> int:
     """

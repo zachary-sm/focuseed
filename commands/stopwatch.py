@@ -21,15 +21,15 @@ def start_stopwatch(note: str):
     print("Press Ctrl+C to stop and save your session.")
     try:
         while True:
-            mins = seconds // 60
-            
-            # Update current line - for now, hardcode seconds
-            print(f"\rElapsed: {utils.timer_tools.format_minutes(mins)} {seconds % 60}s", end="", flush=True)
+            # Update current line and use the escape code to clear remaining text
+            print(f"\rElapsed: {utils.timer_tools.format_seconds(seconds)}\033[K", end="", flush=True)
 
             time.sleep(1)
 
             seconds += 1
     except KeyboardInterrupt:
+        mins = seconds // 60
+        
         print()
         print(f"Successfully focused for {utils.timer_tools.format_minutes(mins)}")
         
