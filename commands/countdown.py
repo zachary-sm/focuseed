@@ -1,9 +1,19 @@
 import time
 import utils.timer_tools
-from datetime import datetime
 import utils.save_tools
+from datetime import datetime
 
 def start_countdown(minutes: int, note: str):
+    """
+        Starts a study session.
+        
+        The session is only saved if it completes without interruption.
+
+        Args:
+            minutes: The amount of time in minutes.
+            note: The note that the user can view with the session.
+    """
+    
     start_time = datetime.now()
     
     print(f'Started a {minutes} minute session at {start_time.strftime("%H:%M")} with note "{note}"')

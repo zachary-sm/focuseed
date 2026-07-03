@@ -1,7 +1,7 @@
 import utils.save_tools
 import argparse
 import commands.countdown, commands.stopwatch
-from datetime import *
+import constants
 
 def main():
     parser = argparse.ArgumentParser(prog="focuseed")
@@ -31,6 +31,9 @@ def main():
         help="A note about this study session",
         default="A focus countdown session"
     )
+
+    # version command
+    parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
 
     # The command line input
     args = parser.parse_args()

@@ -1,12 +1,17 @@
 def format_minutes(minutes: int) -> str:
     """
-        Convert a number (1 or greater) of minutes into a nicely formatted hours + minutes.
-        62 minutes becomes "1h 2m"
-        60 minutes becomes "1h"
-        23 minutes becomes "23m"    
+        Convert a duration in minutes into a human-readable string.
 
-        args:
-            minutes: The minutes to convert
+        Examples:
+            62 minutes becomes "1h 2m".
+            60 minutes becomes "1h".
+            23 minutes becomes "23m".
+
+        Args:
+            minutes: The duration to convert, in minutes. Must be at least 0.
+
+        Returns:
+            str: The formatted duration.
     """
     if minutes < 0:
         raise ValueError("Must be 0 minutes or greater to convert.")

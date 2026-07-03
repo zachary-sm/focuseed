@@ -5,9 +5,11 @@ from datetime import datetime
 
 def start_stopwatch(note: str):
     """
-        Initiates a focus session that is exited by the user with ctrl+C.
+        Starts a stopwatch session.
 
-        args:
+        Can be exited at any time, rewarding the user fully.
+
+        Args:
             note: The session note.
     """
     

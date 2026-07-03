@@ -2,6 +2,6 @@ Since this is a personal project that is meant to take me between 20 and 40 hour
 
 July 1st - 1h
 
-July 2nd - 3h
+July 2nd - 3h + 1h
 
 July 3rd - 
