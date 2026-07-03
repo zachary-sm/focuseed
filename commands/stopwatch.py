@@ -24,7 +24,7 @@ def start_stopwatch(note: str):
             mins = seconds // 60
             
             # Update current line - for now, hardcode seconds
-            print(f"\rElapsed: {utils.timer_tools.format_minutes(mins)} {seconds}s", end="", flush=True)
+            print(f"\rElapsed: {utils.timer_tools.format_minutes(mins)} {seconds % 60}s", end="", flush=True)
 
             time.sleep(1)
 

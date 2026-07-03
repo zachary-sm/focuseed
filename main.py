@@ -48,7 +48,7 @@ def main():
         case "countdown":
             commands.countdown.start_countdown(args.minutes, args.note)
         case "log":
-            commands.log.generate_log(count=args.count)
+            commands.log.generate_log(args.count)
 
 if __name__ == "__main__":
     main()

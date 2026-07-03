@@ -5,6 +5,8 @@ from pathlib import Path
 def save_session(start_time: datetime, end_time: datetime, note: str, type: str):
     """
         Save a study session to the save file.
+
+        It saves into a JSON list of sessions.
     
         Args:
             start_time: The time the session started.
@@ -19,11 +21,20 @@ def save_session(start_time: datetime, end_time: datetime, note: str, type: str)
         "note": note,
         "type": type
     }
+    
+    # Load the JSON file and append the python list before converting it back
+    try:
+        with open("data/focus_data.json", "r") as file:
+            save_json = json.load(file)
+    except json.JSONDecodeError:
+        save_json = []
+
+    save_json.append(study_data)
 
     with open("data/focus_data.json", "w") as file:
-        json.dump(study_data, file, indent=4);
+        json.dump(save_json, file, indent=4);
 
-    print("Session save successful - remove this")
+    print("DEBUG: Session save successful")
 
 def count_saved_hours(path: Path = Path("../data/focus_data.json")) -> timedelta:
     """
