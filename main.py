@@ -4,8 +4,6 @@ import commands.countdown
 from datetime import *
 
 def main():
-    print("Welcome to Focuseed")
-    
     parser = argparse.ArgumentParser(prog="focuseed")
     
     subparsers = parser.add_subparsers(
@@ -42,8 +40,6 @@ def main():
             pass
         case "countdown":
             commands.countdown.start_countdown(args.minutes, args.note)
-    
-    print("focuseed finished executing successfully")
 
 if __name__ == "__main__":
     main()

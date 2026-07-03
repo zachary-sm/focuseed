@@ -1,4 +1,5 @@
 import time
+import utils.timer_tools
 from datetime import datetime
 import utils.save_tools
 
@@ -15,5 +16,8 @@ def start_countdown(minutes: int, note: str):
         return
     
     end_time = datetime.now()
+    
 
+    print(f"Successfuly focused for {utils.timer_tools.format_minutes(minutes)}")
+    
     utils.save_tools.save_session(start_time, end_time, note)
