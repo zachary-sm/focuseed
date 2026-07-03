@@ -63,3 +63,36 @@ def session_duration_minutes(start_str: str, end_str: str) -> int:
     duration_delta = end - start
     
     return int(duration_delta.total_seconds() / 60)
+
+def format_iso_date(iso_time: str) -> str:
+
+    """
+    Converts an ISO 8601 datetime string to YYYY/MM/DD format.
+
+    Args:
+        iso_time: An ISO 8601 datetime string, such as
+            "2026-07-03T14:10:38.048219".
+
+    Returns:
+        The date formatted as YYYY/MM/DD.
+
+    Examples:
+        >>> format_iso_date("2026-07-03T14:10:38.048219")
+        '2026/07/03'
+    """
+
+    return datetime.fromisoformat(iso_time).strftime("%Y/%m/%d")
+
+def format_iso_time(iso_time: str):
+    """
+        Converts an ISO 8601 datetime string into a 24-hour time format.
+
+        Returns:
+            The time formatted as HH:MM
+
+        Examples:
+        >>> format_iso_time("2026-07-03T14:10:38.048219")
+        '14:10'
+    """
+
+    return datetime.fromisoformat(iso_time).strftime("%H:%M")

@@ -16,4 +16,4 @@ def print_divider(repeat_str: str):
             repeat_str: The string that will be repeated.
     """
     
-    print(repeat_str * shutil.get_terminal_size().columns)
+    print(repeat_str * (shutil.get_terminal_size().columns // len(repeat_str)))
