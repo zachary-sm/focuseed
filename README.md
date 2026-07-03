@@ -1,3 +1,9 @@
+<p align="center">
+
+  <img src="logo.png" alt="Focuseed logo" width="180">
+
+</p>
+
 # focuseed
 
 A gamified CLI focus app. Create focus countdowns/stopwatches, view history, keep your streak going, and buy plants that grow when you focus.
