@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 def format_minutes(minutes: int) -> str:
     """
         Convert a duration in minutes into a human-readable string.
@@ -27,4 +29,23 @@ def format_minutes(minutes: int) -> str:
 
 def format_seconds():
     # will format to the nearest second instead of minute
-    pass
+    raise NotImplementedError("Format sections has not been implemented yet.")
+
+def session_duration_minutes(start_str: str, end_str: str) -> int:
+    """
+        Calculates the duration in minutes from two ISO 8601 datetime strings.
+
+        Args:
+            start_str: The ISO 8601 starting time.
+            end_str: The ISO 8601 ending time.
+
+        Returns:
+            The duration in minutes.
+    """
+    
+    start = datetime.fromisoformat(start_str)
+    end = datetime.fromisoformat(end_str)
+
+    duration_delta = end - start
+    
+    return int(duration_delta.total_seconds() / 60)

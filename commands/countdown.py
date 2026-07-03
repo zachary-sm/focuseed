@@ -31,4 +31,4 @@ def start_countdown(minutes: int, note: str):
 
     print(f"Successfully focused for {utils.timer_tools.format_minutes(minutes)}")
     
-    utils.save_tools.save_session(start_time, end_time, note)
+    utils.save_tools.save_session(start_time, end_time, note, "Countdown")

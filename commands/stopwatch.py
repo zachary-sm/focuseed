@@ -34,5 +34,5 @@ def start_stopwatch(note: str):
         print(f"Successfully focused for {utils.timer_tools.format_minutes(mins)}")
         
         end_time = datetime.now()
-        utils.save_tools.save_session(start_time, end_time, note)
+        utils.save_tools.save_session(start_time, end_time, note, "Stopwatch")
         
