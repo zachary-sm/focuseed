@@ -1,4 +1,5 @@
 import json
+import utils.formatting_tools
 from pathlib import Path
 from utils.timer_tools import format_minutes, session_duration_minutes
 from datetime import datetime, timedelta
@@ -24,9 +25,9 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
         data = json.load(file) 
 
     for session in reversed(data[-count:]):
-        note = session["info"]
+        note = session["note"]
         date = "NOT IMPLEMENTED"
-        # Get the duration in a readable minutes format
+        
         duration = format_minutes(session_duration_minutes(session["start"], session["end"]))
         type = session["type"]
 
@@ -34,6 +35,11 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
         print("Date: " + date)
         print("Duration: " + duration)
         print("Session type: " + type)
+        print()
+        utils.formatting_tools.print_divider("=")
+        print()
+        
+        
 
 
 

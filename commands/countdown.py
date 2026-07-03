@@ -5,7 +5,7 @@ from datetime import datetime
 
 def start_countdown(minutes: int, note: str):
     """
-        Starts a study session.
+        Starts a countdown study session.
         
         The session is only saved if it completes without interruption.
 
