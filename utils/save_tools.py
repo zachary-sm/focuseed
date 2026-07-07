@@ -34,9 +34,7 @@ def save_session(start_time: datetime, end_time: datetime, note: str, type: str)
     with open("data/focus_data.json", "w") as file:
         json.dump(save_json, file, indent=4);
 
-    print("DEBUG: Session save successful")
-
-def count_saved_hours(path: Path = Path("../data/focus_data.json")) -> timedelta:
+def count_saved_hours(path: Path = Path("data/focus_data.json")) -> timedelta:
     """
         Counts all elapsed study time in a json.
     
@@ -60,3 +58,14 @@ def count_saved_hours(path: Path = Path("../data/focus_data.json")) -> timedelta
         total_duration += end - start
 
     return total_duration
+
+def calculate_average_session_length(path: Path = Path("data/focus_data.json")) -> timedelta:
+    total_hours = count_saved_hours(path)
+    
+    return total_hours / get_session_count(path)
+
+def get_session_count(path: Path = Path("data/focus_data.json")) -> int:
+    with open(path, "r") as f:
+        data = json.load(f)
+
+    return len(data)

@@ -1,6 +1,6 @@
 import shutil
 
-def print_divider(repeat_str: str):
+def print_divider(repeat_str: str, lines: str = 1):
     """
         Prints a divider across the width of the terminal window.
 
@@ -14,6 +14,7 @@ def print_divider(repeat_str: str):
             
         Args:
             repeat_str: The string that will be repeated.
+            lines: The number of divider lines that will be repeated.
     """
     
     print(repeat_str * (shutil.get_terminal_size().columns // len(repeat_str)))

@@ -45,6 +45,33 @@ def format_seconds(seconds: int) -> str:
 
     return f"{minutes_formatted} {seconds_component}s"
 
+def format_timedelta(td: timedelta, show_seconds: bool = True) -> str:
+    """
+        Return a timedelta formatted as 'Xh Ym Zs'.
+    
+        If `show_seconds` is false, seconds are omitted except for durations
+        shorter than one minute.
+    """
+    
+    total_seconds = int(td.total_seconds())
+
+    hours = total_seconds // 3600
+    remainder = total_seconds % 3600
+
+    minutes = remainder // 60
+    seconds = remainder % 60
+
+    parts = []
+
+    if hours:
+        parts.append(f"{hours}h")
+    if minutes:
+        parts.append(f"{minutes}m")
+    if (seconds and show_seconds) or not parts:
+        parts.append(f"{seconds}s")
+
+    return " ".join(parts)
+
 def session_duration_minutes(start_str: str, end_str: str) -> int:
     """
         Calculates the duration in minutes from two ISO 8601 datetime strings.

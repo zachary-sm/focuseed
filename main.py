@@ -1,6 +1,6 @@
 import utils.save_tools
 import argparse
-import commands.countdown, commands.stopwatch, commands.log
+import commands.countdown, commands.stopwatch, commands.log, commands.stats
 import constants
 
 def main():
@@ -32,13 +32,16 @@ def main():
         default="A focus countdown session"
     )
 
+    # stats command
+    countdown = subparsers.add_parser("stats")
+
     # log command
     countdown = subparsers.add_parser("log")
     countdown.add_argument("--count", type=int, help="Amount of most recent messages to display", default=5)
 
     # version command
     parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
-
+    
     # The command line input
     args = parser.parse_args()
 
@@ -49,6 +52,8 @@ def main():
             commands.countdown.start_countdown(args.minutes, args.note)
         case "log":
             commands.log.generate_log(args.count)
+        case "stats":
+            commands.stats.show_stats()
 
 if __name__ == "__main__":
     main()
