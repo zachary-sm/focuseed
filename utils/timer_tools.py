@@ -1,5 +1,7 @@
+import utils.timer_tools
+import time
 from datetime import datetime, timedelta
-
+from utils.formatting_tools import print_and_clear
 def format_minutes(minutes: int) -> str:
     """
         Convert a duration in minutes into a string with hours and minutes.
@@ -123,3 +125,11 @@ def format_iso_time(iso_time: str):
     """
 
     return datetime.fromisoformat(iso_time).strftime("%H:%M")
+
+def countdown_timer(target_seconds: int):
+    seconds = 0
+    while(seconds < target_seconds):
+            print_and_clear(utils.timer_tools.format_seconds(target_seconds - seconds))
+            seconds += 1
+            time.sleep(1)
+    print()

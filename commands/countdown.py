@@ -22,11 +22,7 @@ def start_countdown(minutes: int, note: str):
     print("Press Ctrl+C to stop early and forfeit the study session (it won't be saved).")
 
     try:
-        seconds = 0
-        while(seconds < target_seconds):
-            print_and_clear(utils.timer_tools.format_seconds(target_seconds - seconds))
-            seconds += 1
-            time.sleep(1)
+        utils.timer_tools.countdown_timer(target_seconds)
     except KeyboardInterrupt:
         print()
         print("Timer exited early. No progress tracked.")
