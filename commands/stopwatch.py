@@ -2,6 +2,7 @@ import utils.timer_tools
 import utils.save_tools
 import time
 from datetime import datetime
+from utils.formatting_tools import print_and_clear
 
 def start_stopwatch(note: str):
     """
@@ -22,7 +23,7 @@ def start_stopwatch(note: str):
     try:
         while True:
             # Update current line and use the escape code to clear remaining text
-            print(f"\rElapsed: {utils.timer_tools.format_seconds(seconds)}\033[K", end="", flush=True)
+            print_and_clear(utils.timer_tools.format_seconds(seconds))
 
             time.sleep(1)
 

@@ -1,6 +1,7 @@
 import time
 import utils.timer_tools
 import utils.save_tools
+from utils.formatting_tools import print_and_clear
 from datetime import datetime
 
 def start_countdown(minutes: int, note: str):
@@ -15,19 +16,23 @@ def start_countdown(minutes: int, note: str):
     """
     
     start_time = datetime.now()
+    target_seconds = minutes * 60
     
     print(f'Started a {minutes} minute session at {start_time.strftime("%H:%M")} with note "{note}"')
     print("Press Ctrl+C to stop early and forfeit the study session (it won't be saved).")
 
     try:
-        time.sleep(60 * minutes)
+        seconds = 0
+        while(seconds < target_seconds):
+            print_and_clear(utils.timer_tools.format_seconds(target_seconds - seconds))
+            seconds += 1
+            time.sleep(1)
     except KeyboardInterrupt:
         print()
         print("Timer exited early. No progress tracked.")
         return
     
     end_time = datetime.now()
-    
 
     print(f"Successfully focused for {utils.timer_tools.format_minutes(minutes)}")
     

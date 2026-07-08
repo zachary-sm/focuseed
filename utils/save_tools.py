@@ -13,14 +13,13 @@ def save_session(start_time: datetime, end_time: datetime, note: str, type: str)
             end_time: The time the session ended.
             note: The user's typed session note.
     """
-    
 
     study_data = {
         "start": start_time.isoformat(),
         "end": end_time.isoformat(),
         "note": note,
         "type": type
-    }
+    } 
     
     append_session(study_data=study_data)
 
