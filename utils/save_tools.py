@@ -2,26 +2,41 @@ import json
 from datetime import *
 from pathlib import Path
 
-def save_session(start_time: datetime, end_time: datetime, note: str, type: str):
+def save_session(start_time: datetime, end_time: datetime, note: str, type: str, sessions: int = 1, session_length: int = 0):
     """
         Save a study session to the save file.
 
         It saves into a JSON list of sessions.
+
+        Depending on the session type, different JSON formats may be used.
     
         Args:
             start_time: The time the session started.
             end_time: The time the session ended.
             note: The user's typed session note.
+            type: The command type of the session.
+            
+            sessions: The amount of sessions (if applicable)
+            session_length: The length of each session (if applicable)
     """
-
-    study_data = {
-        "start": start_time.isoformat(),
-        "end": end_time.isoformat(),
-        "note": note,
-        "type": type
-    } 
-    
+    if (type.lower() == "pomodoro"):
+        study_data= {
+            "start": start_time,
+            "end": end_time,
+            "sessions": sessions,
+            "session_length": session_length,
+            "note": note,
+            "type": type
+        }
+    else:
+        study_data = {
+            "start": start_time.isoformat(),
+            "end": end_time.isoformat(),
+            "note": note,
+            "type": type
+        } 
     append_session(study_data=study_data)
+
 
 def append_session(study_data: dict, path: Path = Path("data/focus_data.json")):
     """
