@@ -128,7 +128,7 @@ def format_iso_time(iso_time: str):
 
 def countdown_timer(target_seconds: int):
     seconds = 0
-    while(seconds < target_seconds):
+    while(seconds <= target_seconds):
             print_and_clear(utils.timer_tools.format_seconds(target_seconds - seconds))
             seconds += 1
             time.sleep(1)

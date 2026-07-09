@@ -4,4 +4,8 @@ July 1st - 1h
 
 July 2nd - 2h + 1h + 2h
 
-July 3rd - 2h
+July 3rd - 2h 
+
+July 6th: 2h
+
+July 7th: 1h
