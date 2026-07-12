@@ -9,3 +9,9 @@ July 3rd - 2h
 July 6th: 2h
 
 July 7th: 1h
+
+July 8th: 1h
+
+July 9th: 30m
+
+July 10th: 1h

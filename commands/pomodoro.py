@@ -22,11 +22,11 @@ def start_pomodoro(focus_minutes: int,
         
         print(f"Session #{session_number} complete!")
         
-        # TODO: Add a special JSON type for pomodoros specifically to avoid this nonsense
         end_time = datetime.now()
         save_session(start_time, end_time, note=f"{note} - Session #{session_number}", type="Pomodoro")
         
         session_mod = session_number % sessions_before_long_break
+        
         try:
             if (session_mod != 0):
                 print(f"Started short break timer. Focus sessions until long break: {sessions_before_long_break - session_mod}")
@@ -43,6 +43,5 @@ def start_pomodoro(focus_minutes: int,
         print("Pomodoro session complete!")
         print(f"Completed focus sessions: {session_number - 1}")
     
-    # TODO: Save the session
     print()
     print("Exiting Pomodoro")

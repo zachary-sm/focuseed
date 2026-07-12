@@ -1,6 +1,6 @@
 import utils.timer_tools
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from utils.formatting_tools import print_and_clear
 def format_minutes(minutes: int) -> str:
     """
@@ -133,3 +133,6 @@ def countdown_timer(target_seconds: int):
             seconds += 1
             time.sleep(1)
     print()
+
+def get_iso_date(iso_time: str) -> date:
+    return datetime.fromisoformat(iso_time).date()
