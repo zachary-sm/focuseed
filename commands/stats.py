@@ -1,7 +1,8 @@
 from utils.save_tools import count_saved_hours, calculate_average_session_length, get_separate_days_focused, get_session_count, get_current_streak
 from utils.timer_tools import format_timedelta
+from pathlib import Path
 
-def show_stats():
+def show_stats(path: Path = Path("data/focus_data.json") ):
     """
         Shows the user statistical data about their save.
 
@@ -13,8 +14,8 @@ def show_stats():
                 Total Focus Sessions: 32 sessions
                 Average Focus Session Length: 1h 16m 12s
     """
-    print(f"Total Focus Time: {format_timedelta(count_saved_hours())}")
-    print(f"Separate Days Focused: {len(get_separate_days_focused())} days")
-    print(f"Current Streak: {get_current_streak()}")
-    print(f"Total Focus Sessions: {get_session_count()} sessions")
-    print(f"Average Focus Session Length: {format_timedelta(calculate_average_session_length())}")
+    print(f"Total Focus Time: {format_timedelta(count_saved_hours(path))}")
+    print(f"Separate Days Focused: {len(get_separate_days_focused(path))} days")
+    print(f"Current Streak: {get_current_streak(path)}")
+    print(f"Total Focus Sessions: {get_session_count(path)} sessions")
+    print(f"Average Focus Session Length: {format_timedelta(calculate_average_session_length(path))}")
