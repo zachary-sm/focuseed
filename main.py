@@ -1,6 +1,6 @@
 import utils.save_tools
 import argparse
-import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro
+import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop
 import constants
 
 def main():
@@ -52,6 +52,9 @@ def main():
     countdown = subparsers.add_parser("log")
     countdown.add_argument("--count", type=int, help="Amount of most recent messages to display", default=5)
 
+    # shop command
+    countdown = subparsers.add_parser("shop")
+
     # version command
     parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
     
@@ -69,6 +72,7 @@ def main():
             commands.log.generate_log(args.count)
         case "stats":
             commands.stats.show_stats()
-
+        case "shop":
+            commands.shop.view_shop()
 if __name__ == "__main__":
     main()

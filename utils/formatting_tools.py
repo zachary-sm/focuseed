@@ -22,3 +22,6 @@ def print_divider(repeat_str: str, lines: int = 1):
 def print_and_clear(clear_str):
     """Clears the text where the cursor is and then prints the clear_str."""
     print(f"\r{clear_str}\033[K", end="", flush=True)
+
+def print_bold(text):
+    print(f"\033[1m{text}\033[0m")

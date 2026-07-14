@@ -53,25 +53,25 @@ def append_session(study_data: dict, path: Path = Path("data/focus_data.json")):
     
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    sessions = load_sessions(path)
+    sessions = load_data(path)
 
     sessions.append(study_data)
 
     with open(path, "w") as file:
         json.dump(sessions, file, indent=4)
 
-def load_sessions(path = Path("data/focus_data.json")) -> list:
+def load_data(path = Path("data/focus_data.json")) -> list:
     """
-    Load all study sessions from the JSON data file.
+    Load all data from the JSON data file.
 
     Creates the parent directory if it does not exist. If the file is
     missing or contains invalid JSON, an empty list is returned.
 
     Args:
-        path: The path to the JSON file containing study sessions.
+        path: The path to A JSON file.
 
     Returns:
-        A list of study session dictionaries.
+        A list of the information in that JSON.
     """
     
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -96,7 +96,7 @@ def count_saved_hours(path: Path = Path("data/focus_data.json")) -> timedelta:
     
     total_duration = timedelta()
 
-    data = load_sessions(path)
+    data = load_data(path)
 
     for session in data:
         start = datetime.fromisoformat(session["start"])
@@ -112,12 +112,12 @@ def calculate_average_session_length(path: Path = Path("data/focus_data.json")) 
     return total_hours / get_session_count(path)
 
 def get_session_count(path: Path = Path("data/focus_data.json")) -> int:
-    data = load_sessions(path)
+    data = load_data(path)
 
     return len(data)
 
 def get_separate_days_focused(path: Path = Path("data/focus_data.json")) -> set:
-    data = load_sessions(path)
+    data = load_data(path)
 
     dates = set()
     
@@ -160,3 +160,12 @@ def get_current_streak(path: Path = Path("data/focus_data.json")):
             break
 
     return streak
+
+def save_to_field(path: Path, field: str, item):
+    """
+        Tries to save an item to that field in a JSON. If it doesn't exist, it is created.
+    """
+    data = load_data(path)
+
+    
+

@@ -1,0 +1,14 @@
+[project]
+name = "focuseed"
+version = "1.0.0"
+description = "A CLI focus and Pomodoro tracker"
+requires-python = ">=3.12"
+
+[project.scripts]
+focuseed = "focuseed.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -15,3 +15,5 @@ July 8th: 1h
 July 9th: 30m
 
 July 10th: 1h
+
+July 13th: 1.5h

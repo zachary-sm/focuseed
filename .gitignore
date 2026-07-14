@@ -1,1 +1,11 @@
+# The user's save data
 data/*
+
+# The python virtual environment
+.venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
