@@ -2,7 +2,7 @@ import json
 import utils.formatting_tools
 from pathlib import Path
 from utils.timer_tools import format_minutes, session_duration_minutes, format_iso_date, format_iso_time
-from utils.save_tools import load_data
+from utils.save_tools import load_json_list
 from datetime import datetime, timedelta
 
 def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
@@ -25,7 +25,7 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
     utils.formatting_tools.print_divider("=")
     print()
 
-    data = load_data(path)
+    data = load_json_list(path)
 
     if len(data) > 0:
         print(f"The {count} most recent focus sessions:")

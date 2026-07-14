@@ -1,4 +1,5 @@
 import json
+from typing import Any
 from datetime import datetime, timedelta, date
 from pathlib import Path
 from collections import Counter
@@ -35,10 +36,23 @@ def save_session(start: datetime, end: datetime, note: str, type: str):
             "note": note,
             "type": type
         } 
-    append_session(study_data=study_data)
+    append_json_session(study_data=study_data)
+
+def save_to_json_field(field: str, item: int, path: Path = Path("data/focus_data.json")):
+    data = load_json_dict(path)
+
+    data[field] = item
+
+    with open(path, "w") as file:
+        json.dump(data, file, indent=4)
+
+def get_json_field(field:str, item: int, path: Path = Path("data/focus_data.json")):
+    data = load_json_dict(path)
+
+    return data[field]
 
 
-def append_session(study_data: dict, path: Path = Path("data/focus_data.json")):
+def append_json_session(study_data: dict, path: Path = Path("data/focus_data.json")):
     """
     Append a study session to the JSON data file.
 
@@ -53,14 +67,14 @@ def append_session(study_data: dict, path: Path = Path("data/focus_data.json")):
     
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    sessions = load_data(path)
+    sessions = load_json_list(path)
 
     sessions.append(study_data)
 
     with open(path, "w") as file:
         json.dump(sessions, file, indent=4)
 
-def load_data(path = Path("data/focus_data.json")) -> list:
+def load_json_list(path = Path("data/focus_data.json")) -> list[dict]:
     """
     Load all data from the JSON data file.
 
@@ -82,6 +96,27 @@ def load_data(path = Path("data/focus_data.json")) -> list:
     except (json.JSONDecodeError, FileNotFoundError):
         return []
 
+def load_json_dict(path = Path("data/focus_data.json")) -> dict:
+    """
+    Load all dict data from a JSON file.
+
+    Creates the parent directory if it does not exist. If the file is
+    missing or contains invalid JSON, an empty dictionary is returned.
+
+    Args:
+        path: The path to the JSON file.
+
+    Returns:
+        A dictionary containing the loaded JSON data.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    
+    try:
+        with open(path, "r") as file:
+            return json.load(file)
+    except (json.JSONDecodeError, FileNotFoundError):
+        return {}
+
 def count_saved_hours(path: Path = Path("data/focus_data.json")) -> timedelta:
     """
         Counts all elapsed study time in a json.
@@ -96,7 +131,7 @@ def count_saved_hours(path: Path = Path("data/focus_data.json")) -> timedelta:
     
     total_duration = timedelta()
 
-    data = load_data(path)
+    data = load_json_list(path)
 
     for session in data:
         start = datetime.fromisoformat(session["start"])
@@ -112,17 +147,17 @@ def calculate_average_session_length(path: Path = Path("data/focus_data.json")) 
     return total_hours / get_session_count(path)
 
 def get_session_count(path: Path = Path("data/focus_data.json")) -> int:
-    data = load_data(path)
+    data = load_json_list(path)
 
     return len(data)
 
 def get_separate_days_focused(path: Path = Path("data/focus_data.json")) -> set:
-    data = load_data(path)
+    data = load_json_list(path)
 
     dates = set()
     
     for item in data:
-        dates.add(get_iso_date(item.get("start")))
+        dates.add(get_iso_date(item["start"]))
 
     return dates
 
@@ -160,12 +195,4 @@ def get_current_streak(path: Path = Path("data/focus_data.json")):
             break
 
     return streak
-
-def save_to_field(path: Path, field: str, item):
-    """
-        Tries to save an item to that field in a JSON. If it doesn't exist, it is created.
-    """
-    data = load_data(path)
-
-    
 

@@ -25,3 +25,31 @@ def print_and_clear(clear_str):
 
 def print_bold(text):
     print(f"\033[1m{text}\033[0m")
+
+def get_choice(prompt: str, choices: set):
+    """
+    Prompt the user to choose from a set of valid inputs.
+
+    Repeatedly asks the user for input until they enter one of values in
+    `choices`. The corresponding value is returned. Input and output are
+    converted to lowercase.
+
+    Args:
+        prompt: The message displayed to the user when requesting input.
+        choices: A set of the possible choices the user can enter.
+
+    Returns:
+        The value the user input if it's in the `choices` list.
+    """
+    choices = {choice.lower() for choice in choices}
+    while True:
+        print(f"Options: {choices}")
+        
+        choice = input(prompt).strip().lower()
+
+        if choice in choices:
+            return choice
+
+        print("Invalid choice.")
+
+        print(f"ERROR: {choice} is not in {choices}")

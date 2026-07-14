@@ -1,18 +1,18 @@
 [
     {
-        "name": "Oak Tree",
+        "name": "Oak",
         "description": "A simple oak tree.",
         "price": 1000,
         "growth_time": 120
     },
     {
-        "name": "Birch Tree",
+        "name": "Birch",
         "description": "The bark is almost like paper.",
         "price": 1000,
         "growth_time": 90
     },
     {
-        "name": "Spruce Tree",
+        "name": "Spruce",
         "description": "They stay green throughout the year.",
         "price": 1000,
         "growth_time": 180
