@@ -1,6 +1,6 @@
 import utils.save_tools
 import argparse
-import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop
+import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop, commands.trees
 import constants
 
 def main():
@@ -46,14 +46,17 @@ def main():
     )
 
     # stats command
-    countdown = subparsers.add_parser("stats")
+    stats = subparsers.add_parser("stats")
 
     # log command
-    countdown = subparsers.add_parser("log")
-    countdown.add_argument("--count", type=int, help="Amount of most recent messages to display", default=5)
+    log = subparsers.add_parser("log")
+    log.add_argument("--count", type=int, help="Amount of most recent messages to display", default=5)
 
     # shop command
-    countdown = subparsers.add_parser("shop")
+    shop = subparsers.add_parser("shop")
+
+    # trees command
+    trees = subparsers.add_parser("trees")
 
     # version command
     parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
@@ -74,5 +77,7 @@ def main():
             commands.stats.show_stats()
         case "shop":
             commands.shop.view_shop()
+        case "trees":
+            commands.trees.show_trees()
 if __name__ == "__main__":
     main()

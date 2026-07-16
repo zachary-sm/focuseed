@@ -38,7 +38,7 @@ def save_session(start: datetime, end: datetime, note: str, type: str):
         } 
     append_json_session(study_data=study_data)
 
-def save_to_json_field(field: str, item: int, path: Path = Path("data/focus_data.json")):
+def save_to_json_field(field: str, item: Any, path: Path = Path("data/focus_data.json")):
     data = load_json_dict(path)
 
     data[field] = item
@@ -46,7 +46,7 @@ def save_to_json_field(field: str, item: int, path: Path = Path("data/focus_data
     with open(path, "w") as file:
         json.dump(data, file, indent=4)
 
-def get_json_field(field:str, item: int, path: Path = Path("data/focus_data.json")):
+def get_json_field(field:str, path: Path = Path("data/focus_data.json")):
     data = load_json_dict(path)
 
     return data[field]

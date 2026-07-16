@@ -21,10 +21,6 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
         Args:
             count: The number of most recent sessions that will have their info printed.
     """
-    print()
-    utils.formatting_tools.print_divider("=")
-    print()
-
     data = load_json_list(path)
 
     if len(data) > 0:

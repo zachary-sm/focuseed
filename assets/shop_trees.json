@@ -1,32 +1,32 @@
-[
-    {
+{
+    "oak":{
         "name": "Oak",
         "description": "A simple oak tree.",
         "price": 1000,
         "growth_time": 120
     },
-    {
+    "birch":{
         "name": "Birch",
         "description": "The bark is almost like paper.",
         "price": 1000,
         "growth_time": 90
     },
-    {
+    "spruce":{
         "name": "Spruce",
         "description": "They stay green throughout the year.",
         "price": 1000,
         "growth_time": 180
     },
-    {
+    "maple":{
         "name": "Maple",
         "description": "A delicious syrup can be made with their help.",
         "price": 1000,
         "growth_time": 240
     },
-    {
+    "cherry":{
         "name": "Cherry",
         "description": "Such beautiful bright colours.",
         "price": 1000,
         "growth_time": 360
     }
-]
+}

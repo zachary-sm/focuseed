@@ -34,6 +34,8 @@ def get_choice(prompt: str, choices: set):
     `choices`. The corresponding value is returned. Input and output are
     converted to lowercase.
 
+    Adds a space at the end for ease of use.
+
     Args:
         prompt: The message displayed to the user when requesting input.
         choices: A set of the possible choices the user can enter.
@@ -41,6 +43,7 @@ def get_choice(prompt: str, choices: set):
     Returns:
         The value the user input if it's in the `choices` list.
     """
+    prompt = prompt + " "
     choices = {choice.lower() for choice in choices}
     while True:
         print(f"Options: {choices}")
