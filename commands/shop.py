@@ -1,40 +1,73 @@
 import utils.save_tools
 import utils.formatting_tools
+import utils.economy_tools
 from pathlib import Path
 
-def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_path: Path = Path("data/shop_data.json"), default_shop_data_path = Path("assets/shop_data_default.json")):
+
+def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_path: Path = Path("data/shop_data.json"), default_shop_data_path=Path("assets/shop_data_default.json")):
+    """
+    Displays all available trees in the shop and allows the user to purchase one.
+
+    Shows each tree's name, description, price, and growth time. If the user
+    chooses to buy a tree, the function verifies that they have enough Growbux
+    and do not already own the selected tree before completing the purchase and
+    saving the updated inventory.
+
+    Args:
+        shop_trees_path: Path to the JSON file containing all available trees.
+        shop_data_path: Path to the user's shop data JSON file.
+        default_shop_data_path: Path to the default shop data JSON file used if
+            the user's shop data does not exist.
+    """
+    
     shop_trees = utils.save_tools.load_json_dict(shop_trees_path)
     shop_data = utils.save_tools.load_json_dict(shop_data_path, default_json_path=default_shop_data_path)
     tree_types = set()
-
+    tree_name_to_key = {}
 
     for tree_key in shop_trees:
-        utils.formatting_tools.print_bold(f'{shop_trees[tree_key]["name"]}')
+        utils.formatting_tools.print_bold(shop_trees[tree_key]["name"])
         print(f'Description: {shop_trees[tree_key]["description"]}')
         print(f'Cost: {shop_trees[tree_key]["price"]}')
         print(f'Growth time: {shop_trees[tree_key]["growth_time"]}')
         print()
-        tree_types.add(shop_trees[tree_key]["name"])
 
-    is_buying = utils.formatting_tools.get_choice('Do you want to buy a tree?', {"Y", "N"})
+        display_name = shop_trees[tree_key]["name"].strip().lower()
+        tree_types.add(display_name)
+        tree_name_to_key[display_name] = tree_key
 
-    if (is_buying == "y"):
-        tree_to_buy = utils.formatting_tools.get_choice('Type the name of the tree you want to buy:', tree_types)
-        
+    is_buying = utils.formatting_tools.get_choice("Do you want to buy a tree?", {"Y", "N"})
+
+    if is_buying == "y":
+        tree_to_buy = utils.formatting_tools.get_choice(
+            "Type the name of the tree you want to buy:",
+            tree_types
+        ).strip().lower()
+
+        tree_key = tree_name_to_key[tree_to_buy]
+
+        growbux_balance = utils.economy_tools.get_balance()
+        tree_price = shop_trees[tree_key]["price"]
+
         # Check if the user has enough currency
-        if (shop_data["growbux"] < shop_trees[tree_to_buy]["price"]):
-            print(f"Not enough currency! You have {shop_data["growbux"]}₲ but that tree costs {shop_trees[tree_to_buy]["price"]}₲")
+        if growbux_balance < tree_price:
+            print(f"Not enough currency! You have {growbux_balance}₲ but that tree costs {tree_price}₲")
             return
 
         owned_trees_list = shop_data["inventory"]
 
         # Check if the user already owns it
-        if (tree_to_buy in owned_trees_list):
-            print(f"You already own that tree!")
+        if tree_key in owned_trees_list:
+            print("You already own that tree!")
             return
 
-        owned_trees_list.append(tree_to_buy)
+        utils.economy_tools.change_growbux(-tree_price)
+        owned_trees_list.append(tree_key)
 
-        print(f"Successfully purchased {tree_to_buy}!")
-        
-        utils.save_tools.save_to_json_field("inventory", owned_trees_list, Path("data/shop_data.json"))
+        print(f"Successfully purchased {shop_trees[tree_key]['name']}!")
+
+        utils.save_tools.save_to_json_field(
+            "inventory",
+            owned_trees_list,
+            Path("data/shop_data.json")
+        )

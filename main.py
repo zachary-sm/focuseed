@@ -1,6 +1,6 @@
 import utils.save_tools
 import argparse
-import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop, commands.trees
+import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop, commands.trees, commands.balance
 import constants
 
 def main():
@@ -58,6 +58,9 @@ def main():
     # trees command
     trees = subparsers.add_parser("trees")
 
+    # balance command
+    balance = subparsers.add_parser("balance")
+
     # version command
     parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
     
@@ -79,5 +82,7 @@ def main():
             commands.shop.view_shop()
         case "trees":
             commands.trees.show_trees()
+        case "balance":
+            commands.balance.show_balance()
 if __name__ == "__main__":
     main()

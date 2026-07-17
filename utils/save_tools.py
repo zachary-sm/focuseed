@@ -3,9 +3,11 @@ from typing import Any
 from datetime import datetime, timedelta, date
 from pathlib import Path
 from collections import Counter
-from utils.timer_tools import get_iso_date
+from utils.timer_tools import get_iso_date, session_duration_minutes
+from constants import GROWBUX_PER_MINUTE
 
-def save_session(start: datetime, end: datetime, note: str, type: str):
+def save_session(start: datetime, end: datetime, note: str, session_type: str):
+    from utils.economy_tools import award_growbux
     """
         Save a study session to the save file.
 
@@ -17,26 +19,28 @@ def save_session(start: datetime, end: datetime, note: str, type: str):
             start_time: The time the session started.
             end_time: The time the session ended.
             note: The user's typed session note.
-            type: The command type of the session.
+            session_type: The command type of the session.
             
             sessions: The amount of sessions (if applicable)
             session_length: The length of each session (if applicable)
     """
-    if (type.lower() == "pomodoro"):
+    minutes = int((end - start).total_seconds() // 60)
+    if (session_type.lower() == "pomodoro"):
         study_data= {
             "start": start,
             "end": end,
             "note": note,
-            "type": type
+            "type": session_type
         }
     else:
         study_data = {
             "start": start.isoformat(),
             "end": end.isoformat(),
             "note": note,
-            "type": type
+            "type": session_type
         } 
     append_json_session(study_data=study_data)
+    award_growbux(session_duration_minutes(start, end) * GROWBUX_PER_MINUTE)
 
 def save_to_json_field(field: str, item: Any, path: Path = Path("data/focus_data.json")):
     data = load_json_dict(path)
@@ -214,4 +218,3 @@ def copy_json(src: Path, dest: Path):
 
     with open(dest, 'w') as file:
         json.dump(data, file, indent=4)
-

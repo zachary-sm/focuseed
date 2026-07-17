@@ -36,4 +36,3 @@ def start_stopwatch(note: str):
         
         end_time = datetime.now()
         utils.save_tools.save_session(start_time, end_time, note, "Stopwatch")
-        

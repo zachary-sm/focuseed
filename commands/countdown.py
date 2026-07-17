@@ -3,6 +3,7 @@ import utils.timer_tools
 import utils.save_tools
 from utils.formatting_tools import print_and_clear
 from datetime import datetime
+from utils.economy_tools import award_growbux
 
 def start_countdown(minutes: int, note: str):
     """
@@ -31,5 +32,5 @@ def start_countdown(minutes: int, note: str):
     end_time = datetime.now()
 
     print(f"Successfully focused for {utils.timer_tools.format_minutes(minutes)}")
-    
     utils.save_tools.save_session(start_time, end_time, note, "Countdown")
+    

@@ -136,3 +136,7 @@ def countdown_timer(target_seconds: int):
 
 def get_iso_date(iso_time: str) -> date:
     return datetime.fromisoformat(iso_time).date()
+
+def session_duration_minutes(start: datetime, end: datetime) -> int:
+    """Return the duration between two datetimes in whole minutes."""
+    return int((end - start).total_seconds() // 60)

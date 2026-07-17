@@ -23,7 +23,7 @@ def start_pomodoro(focus_minutes: int,
         print(f"Session #{session_number} complete!")
         
         end_time = datetime.now()
-        save_session(start_time, end_time, note=f"{note} - Session #{session_number}", type="Pomodoro")
+        save_session(start_time, end_time, note=f"{note} - Session #{session_number}", session_type="Pomodoro")
         
         session_mod = session_number % sessions_before_long_break
         
