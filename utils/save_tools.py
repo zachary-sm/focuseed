@@ -46,11 +46,17 @@ def save_to_json_field(field: str, item: Any, path: Path = Path("data/focus_data
     with open(path, "w") as file:
         json.dump(data, file, indent=4)
 
-def get_json_field(field:str, path: Path = Path("data/focus_data.json")):
+def get_json_field(field: str, path: Path = Path("data/focus_data.json"), default_json_path: Path = Path("data/default_shop_data.json")):
     data = load_json_dict(path)
 
-    return data[field]
+    try:
+        return data[field]
+    except KeyError:
+        default_data = load_json_dict(default_json_path)
 
+        save_to_json_field(field, default_data[field], path)
+
+        return default_data[field]
 
 def append_json_session(study_data: dict, path: Path = Path("data/focus_data.json")):
     """
@@ -96,9 +102,10 @@ def load_json_list(path = Path("data/focus_data.json")) -> list[dict]:
     except (json.JSONDecodeError, FileNotFoundError):
         return []
 
-def load_json_dict(path = Path("data/focus_data.json")) -> dict:
+def load_json_dict(path = Path("data/shop_data.json"), default_json_path: Path = Path("data/default_shop_data.json")) -> dict:
     """
-    Load all dict data from a JSON file.
+    Load all dict data from a JSON file. If it doesn't exist, it makes one
+    with the template JSON in the `default_dict` list.
 
     Creates the parent directory if it does not exist. If the file is
     missing or contains invalid JSON, an empty dictionary is returned.
@@ -115,7 +122,8 @@ def load_json_dict(path = Path("data/focus_data.json")) -> dict:
         with open(path, "r") as file:
             return json.load(file)
     except (json.JSONDecodeError, FileNotFoundError):
-        return {}
+        copy_json(default_json_path, path)
+        return load_json_dict(path, None)
 
 def count_saved_hours(path: Path = Path("data/focus_data.json")) -> timedelta:
     """
@@ -195,4 +203,15 @@ def get_current_streak(path: Path = Path("data/focus_data.json")):
             break
 
     return streak
+
+def copy_json(src: Path, dest: Path):
+    """Overwrites the json at `dest` with the one at `src`"""
+
+    with open(src, 'r') as file:
+        data = json.load(file)
+
+    dest.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(dest, 'w') as file:
+        json.dump(data, file, indent=4)
 

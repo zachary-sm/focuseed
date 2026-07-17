@@ -2,10 +2,9 @@ import utils.save_tools
 import utils.formatting_tools
 from pathlib import Path
 
-def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_path: Path = Path("data/shop_data.json")):
+def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_path: Path = Path("data/shop_data.json"), default_shop_data_path = Path("assets/shop_data_default.json")):
     shop_trees = utils.save_tools.load_json_dict(shop_trees_path)
-    shop_data = utils.save_tools.load_json_dict(shop_data_path)
-
+    shop_data = utils.save_tools.load_json_dict(shop_data_path, default_json_path=default_shop_data_path)
     tree_types = set()
 
 
@@ -23,8 +22,8 @@ def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_
         tree_to_buy = utils.formatting_tools.get_choice('Type the name of the tree you want to buy:', tree_types)
         
         # Check if the user has enough currency
-        if (shop_data["currency"]["growbux"] < shop_trees[tree_to_buy]["price"]):
-            print(f"Not enough currency! You have {shop_data["currency"]["growbux"]}₲ but that tree costs {shop_trees[tree_to_buy]["price"]}₲")
+        if (shop_data["growbux"] < shop_trees[tree_to_buy]["price"]):
+            print(f"Not enough currency! You have {shop_data["growbux"]}₲ but that tree costs {shop_trees[tree_to_buy]["price"]}₲")
             return
 
         owned_trees_list = shop_data["inventory"]
