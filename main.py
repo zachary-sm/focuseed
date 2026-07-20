@@ -1,6 +1,6 @@
 import utils.save_tools
 import argparse
-import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop, commands.trees, commands.balance
+import commands.countdown, commands.stopwatch, commands.log, commands.stats, commands.pomodoro, commands.shop, commands.trees, commands.balance, commands.switch, commands.tree
 import constants
 
 def main():
@@ -63,6 +63,12 @@ def main():
 
     # version command
     parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
+
+    # switch command
+    balance = subparsers.add_parser("switch")
+
+    # tree command
+    tree = subparsers.add_parser("tree")
     
     # The command line input
     args = parser.parse_args()
@@ -84,5 +90,13 @@ def main():
             commands.trees.show_trees()
         case "balance":
             commands.balance.show_balance()
+        case "switch":
+            commands.switch.switch_tree()
+        case "tree":
+            commands.tree.show_tree()
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

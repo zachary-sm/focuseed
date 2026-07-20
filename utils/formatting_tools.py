@@ -45,6 +45,7 @@ def get_choice(prompt: str, choices: set):
     """
     prompt = prompt + " "
     choices = {choice.lower() for choice in choices}
+    
     while True:
         print(f"Options: {choices}")
         

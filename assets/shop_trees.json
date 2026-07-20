@@ -1,8 +1,8 @@
 {
     "oak": {
         "name": "Oak",
-        "description": "A simple oak tree.",
-        "price": 1000,
+        "description": "A simple oak tree to start your journey.",
+        "price": 0,
         "growth_time": 120
     },
     "pine": {

@@ -22,11 +22,15 @@ def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_
     
     shop_trees = utils.save_tools.load_json_dict(shop_trees_path)
     shop_data = utils.save_tools.load_json_dict(shop_data_path, default_json_path=default_shop_data_path)
+    owned_trees_list = shop_data["inventory"]
     tree_types = set()
     tree_name_to_key = {}
 
     for tree_key in shop_trees:
         utils.formatting_tools.print_bold(shop_trees[tree_key]["name"])
+        if tree_key in owned_trees_list:
+            print(" (OWNED)")
+
         print(f'Description: {shop_trees[tree_key]["description"]}')
         print(f'Cost: {shop_trees[tree_key]["price"]}')
         print(f'Growth time: {shop_trees[tree_key]["growth_time"]}')
@@ -53,8 +57,6 @@ def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_
         if growbux_balance < tree_price:
             print(f"Not enough currency! You have {growbux_balance}₲ but that tree costs {tree_price}₲")
             return
-
-        owned_trees_list = shop_data["inventory"]
 
         # Check if the user already owns it
         if tree_key in owned_trees_list:

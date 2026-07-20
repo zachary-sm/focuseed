@@ -7,7 +7,7 @@ from utils.timer_tools import get_iso_date, session_duration_minutes
 from constants import GROWBUX_PER_MINUTE
 
 def save_session(start: datetime, end: datetime, note: str, session_type: str):
-    from utils.economy_tools import award_growbux
+    from utils.economy_tools import award_progress
     """
         Save a study session to the save file.
 
@@ -40,7 +40,7 @@ def save_session(start: datetime, end: datetime, note: str, session_type: str):
             "type": session_type
         } 
     append_json_session(study_data=study_data)
-    award_growbux(session_duration_minutes(start, end) * GROWBUX_PER_MINUTE)
+    award_progress(session_duration_minutes(start, end))
 
 def save_to_json_field(field: str, item: Any, path: Path = Path("data/focus_data.json")):
     data = load_json_dict(path)
@@ -50,7 +50,7 @@ def save_to_json_field(field: str, item: Any, path: Path = Path("data/focus_data
     with open(path, "w") as file:
         json.dump(data, file, indent=4)
 
-def get_json_field(field: str, path: Path = Path("data/focus_data.json"), default_json_path: Path = Path("data/default_shop_data.json")):
+def get_json_field(field: str, path: Path = Path("data/focus_data.json"), default_json_path: Path = Path("assets/shop_data_default.json")):
     data = load_json_dict(path)
 
     try:
@@ -106,7 +106,7 @@ def load_json_list(path = Path("data/focus_data.json")) -> list[dict]:
     except (json.JSONDecodeError, FileNotFoundError):
         return []
 
-def load_json_dict(path = Path("data/shop_data.json"), default_json_path: Path = Path("data/default_shop_data.json")) -> dict:
+def load_json_dict(path = Path("data/shop_data.json"), default_json_path: Path = Path("assets/shop_data_default.json")) -> dict:
     """
     Load all dict data from a JSON file. If it doesn't exist, it makes one
     with the template JSON in the `default_dict` list.
