@@ -21,14 +21,13 @@ def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_
     """
     
     shop_trees = utils.save_tools.load_json_dict(shop_trees_path)
-    shop_data = utils.save_tools.load_json_dict(shop_data_path, default_json_path=default_shop_data_path)
-    owned_trees_list = shop_data["inventory"]
+    owned_trees_dict = utils.save_tools.get_json_field(field="owned_trees", path=shop_data_path, default_json_path=default_shop_data_path)
     tree_types = set()
     tree_name_to_key = {}
 
     for tree_key in shop_trees:
         utils.formatting_tools.print_bold(shop_trees[tree_key]["name"])
-        if tree_key in owned_trees_list:
+        if tree_key in owned_trees_dict:
             print(" (OWNED)")
 
         print(f'Description: {shop_trees[tree_key]["description"]}')
@@ -59,17 +58,17 @@ def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_
             return
 
         # Check if the user already owns it
-        if tree_key in owned_trees_list:
+        if tree_key in owned_trees_dict:
             print("You already own that tree!")
             return
 
         utils.economy_tools.change_growbux(-tree_price)
-        owned_trees_list.append(tree_key)
+        owned_trees_dict[tree_key] = 0
 
         print(f"Successfully purchased {shop_trees[tree_key]['name']}!")
 
         utils.save_tools.save_to_json_field(
-            "inventory",
-            owned_trees_list,
+            "owned_trees",
+            owned_trees_dict,
             Path("data/shop_data.json")
         )

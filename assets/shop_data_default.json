@@ -1,5 +1,7 @@
 {
-    "inventory":[],
+    "owned_trees": {
+        "oak":0
+    },
     "growbux":0,
     "tree_selected":"oak",
     "tree_progress":0

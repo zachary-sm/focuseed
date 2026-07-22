@@ -17,7 +17,6 @@
         "price": 1000,
         "growth_time": 120
     },
-
     "birch": {
         "name": "Birch",
         "description": "The bark is almost like paper.",
@@ -36,7 +35,6 @@
         "price": 1100,
         "growth_time": 150
     },
-
     "spruce": {
         "name": "Spruce",
         "description": "They stay verdant green throughout the year.",
@@ -55,7 +53,6 @@
         "price": 1200,
         "growth_time": 180
     },
-
     "maple": {
         "name": "Maple",
         "description": "A delicious syrup can be made with their help.",
@@ -74,7 +71,6 @@
         "price": 1300,
         "growth_time": 210
     },
-
     "cherry": {
         "name": "Cherry",
         "description": "Beautiful pink blossoms brighten your growing focus forest.",
@@ -93,7 +89,6 @@
         "price": 1450,
         "growth_time": 240
     },
-
     "willow": {
         "name": "Willow",
         "description": "Graceful, drooping, elegant, and tranquil.",
@@ -112,7 +107,6 @@
         "price": 1600,
         "growth_time": 270
     },
-
     "cedar": {
         "name": "Cedar",
         "description": "Naturally fragrant and remarkably resistant to decay.",
@@ -131,7 +125,6 @@
         "price": 1800,
         "growth_time": 300
     },
-
     "aspen": {
         "name": "Aspen",
         "description": "Its shimmering leaves dance in the slightest breeze.",
@@ -150,7 +143,6 @@
         "price": 2000,
         "growth_time": 330
     },
-
     "cypress": {
         "name": "Cypress",
         "description": "Built to thrive where many trees cannot.",
@@ -169,7 +161,6 @@
         "price": 2200,
         "growth_time": 360
     },
-
     "dogwood": {
         "name": "Dogwood",
         "description": "Small blossoms create a surprisingly stunning display.",
@@ -188,7 +179,6 @@
         "price": 2400,
         "growth_time": 390
     },
-
     "magnolia": {
         "name": "Magnolia",
         "description": "Its massive flowers have bloomed for millions of years.",
@@ -207,7 +197,6 @@
         "price": 2600,
         "growth_time": 420
     },
-
     "jacaranda": {
         "name": "Jacaranda",
         "description": "Purple blossoms transform streets into colorful carpets.",
@@ -226,7 +215,6 @@
         "price": 2750,
         "growth_time": 450
     },
-
     "redwood": {
         "name": "Redwood",
         "description": "Among the tallest living trees on Earth.",
@@ -245,7 +233,6 @@
         "price": 2850,
         "growth_time": 480
     },
-
     "baobab": {
         "name": "Baobab",
         "description": "Nicknamed the tree of life for good reason.",
@@ -264,7 +251,6 @@
         "price": 2950,
         "growth_time": 510
     },
-
     "sequoia": {
         "name": "Sequoia",
         "description": "A colossal giant worthy of your greatest achievements.",

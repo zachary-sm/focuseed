@@ -26,16 +26,16 @@ def change_tree_progress(minutes: int):
     current_progress = get_json_field(field="tree_progress", path=Path("data/shop_data.json"))
     current_tree = get_json_field(field="tree_selected", path=Path("data/shop_data.json"))
     tree_dict = get_json_field(field=current_tree, path=Path("assets/shop_trees.json"))
-    growth_progress = tree_dict["growth_time"]
+    growth_time = tree_dict["growth_time"]
 
-    if current_progress > growth_progress:
-        new_progress = 0
+    new_progress = minutes + current_progress
+    if new_progress >= growth_time:
         print(f"Your {tree_dict["name"]} has grown!")
+        save_to_json_field(field="tree_progress", item=0, path=Path("data/shop_data.json"))
+        current_tree_count = get_json_field(field="owned_trees", path=Path("data/shop_data.json"))[current_tree]
+        save_to_json_field(field="owned_trees", item={current_tree:(current_tree_count + 1)}, path=Path("data/shop_data.json"))
     else:
-        new_progress = minutes + current_progress
-    
-    save_to_json_field(field="tree_progress", item=new_progress, path=Path("data/shop_data.json"))
-    
+        save_to_json_field(field="tree_progress", item=new_progress, path=Path("data/shop_data.json"))
 
 def award_progress(minutes: int):
     """Awards the user an amount of money and some tree growth for their study session."""
