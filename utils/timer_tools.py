@@ -1,5 +1,6 @@
 import utils.timer_tools
 import time
+import math
 from datetime import datetime, timedelta, date
 from utils.formatting_tools import print_and_clear
 def format_minutes(minutes: int) -> str:
@@ -91,7 +92,7 @@ def session_duration_minutes(start_str: str, end_str: str) -> int:
 
     duration_delta = end - start
     
-    return int(duration_delta.total_seconds() / 60)
+    return round(duration_delta.total_seconds() / 60)
 
 def format_iso_date(iso_time: str) -> str:
 
