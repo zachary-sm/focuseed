@@ -8,6 +8,10 @@
 
 **Focuseed** is a gamified command-line focus timer that helps you stay productive. Complete focus sessions, maintain your daily streak, earn coins, and grow a collection of virtual plants as you build consistent study and work habits.
 
+# About
+
+The philosophy behind Focuseed's design is to provide a minimalist approach to productivity. By focusing on only the features that directly support productive work and meaningful gamification, Focuseed avoids unnecessary distractions and steep learning curves. The goal is to create an experience that is approachable for new users while remaining efficient for experienced users, allowing them to quickly return to focused work with minimal friction.
+
 ## Features
 
 - ⏱️ Countdown timers
