@@ -2,7 +2,7 @@
 data/*
 
 # The python virtual environment
-.venv
+.venv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -13,3 +13,21 @@ __pycache__/
 # Python package build artifacts
 build/
 *.egg-info/
+
+# VS Code settings
+.vscode/
+
+# PyCharm project files
+.idea/
+*.iml
+
+# Environment variables
+.env
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution files
+dist/
