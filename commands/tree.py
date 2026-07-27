@@ -10,4 +10,4 @@ def show_tree(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Pat
     print_bold("Currently selected tree:")
     print(tree_field["name"])
     print_bold("Progress:")
-    print(f"{progress} / {tree_field["growth_time"]} minutes")
+    print(f"{progress} / {tree_field['growth_time']} minutes")

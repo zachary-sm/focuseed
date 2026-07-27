@@ -21,6 +21,9 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
         Args:
             count: The number of most recent sessions that will have their info printed.
     """
+    if count < 0:
+        raise ValueError("Log count must be 0 or greater.")
+
     data = load_json_list(path)
 
     if len(data) > 0:
@@ -30,7 +33,8 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
 
     print()
 
-    for session in reversed(data[-count:]):
+    sessions_to_display = data[-count:] if count else []
+    for session in reversed(sessions_to_display):
         note = session["note"]
         date = format_iso_date(session["start"])
         start_time = format_iso_time(session["start"])
@@ -47,6 +51,4 @@ def generate_log(count: int = 5, path: Path = Path("data/focus_data.json")):
         print()
         
         
-
-
 

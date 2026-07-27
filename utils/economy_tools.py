@@ -30,10 +30,11 @@ def change_tree_progress(minutes: int):
 
     new_progress = minutes + current_progress
     if new_progress >= growth_time:
-        print(f"Your {tree_dict["name"]} has grown!")
+        print(f"Your {tree_dict['name']} has grown!")
         save_to_json_field(field="tree_progress", item=0, path=Path("data/shop_data.json"))
-        current_tree_count = get_json_field(field="owned_trees", path=Path("data/shop_data.json"))[current_tree]
-        save_to_json_field(field="owned_trees", item={current_tree:(current_tree_count + 1)}, path=Path("data/shop_data.json"))
+        owned_trees = get_json_field(field="owned_trees", path=Path("data/shop_data.json"))
+        owned_trees[current_tree] += 1
+        save_to_json_field(field="owned_trees", item=owned_trees, path=Path("data/shop_data.json"))
     else:
         save_to_json_field(field="tree_progress", item=new_progress, path=Path("data/shop_data.json"))
 

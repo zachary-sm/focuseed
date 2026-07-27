@@ -75,7 +75,7 @@ def format_timedelta(td: timedelta, show_seconds: bool = True) -> str:
 
     return " ".join(parts)
 
-def session_duration_minutes(start_str: str, end_str: str) -> int:
+def session_duration_minutes(start: datetime | str, end: datetime | str) -> int:
     """
         Calculates the duration in minutes from two ISO 8601 datetime strings.
 
@@ -87,12 +87,14 @@ def session_duration_minutes(start_str: str, end_str: str) -> int:
             The duration in minutes.
     """
     
-    start = datetime.fromisoformat(start_str)
-    end = datetime.fromisoformat(end_str)
+    if isinstance(start, str):
+        start = datetime.fromisoformat(start)
+    if isinstance(end, str):
+        end = datetime.fromisoformat(end)
 
     duration_delta = end - start
     
-    return round(duration_delta.total_seconds() / 60)
+    return int(duration_delta.total_seconds() // 60)
 
 def format_iso_date(iso_time: str) -> str:
 
@@ -128,16 +130,16 @@ def format_iso_time(iso_time: str):
     return datetime.fromisoformat(iso_time).strftime("%H:%M")
 
 def countdown_timer(target_seconds: int):
-    seconds = 0
-    while(seconds <= target_seconds):
-            print_and_clear(utils.timer_tools.format_seconds(target_seconds - seconds))
-            seconds += 1
+    if target_seconds < 0:
+        raise ValueError("Countdown duration must be 0 seconds or greater.")
+
+    seconds_remaining = target_seconds
+    while seconds_remaining > 0:
+            print_and_clear(utils.timer_tools.format_seconds(seconds_remaining))
             time.sleep(1)
+            seconds_remaining -= 1
+    print_and_clear(utils.timer_tools.format_seconds(0))
     print()
 
 def get_iso_date(iso_time: str) -> date:
     return datetime.fromisoformat(iso_time).date()
-
-def session_duration_minutes(start: datetime, end: datetime) -> int:
-    """Return the duration between two datetimes in whole minutes."""
-    return int((end - start).total_seconds() // 60)

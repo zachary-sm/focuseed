@@ -24,21 +24,12 @@ def save_session(start: datetime, end: datetime, note: str, session_type: str):
             sessions: The amount of sessions (if applicable)
             session_length: The length of each session (if applicable)
     """
-    minutes = int((end - start).total_seconds() // 60)
-    if (session_type.lower() == "pomodoro"):
-        study_data= {
-            "start": start,
-            "end": end,
-            "note": note,
-            "type": session_type
-        }
-    else:
-        study_data = {
-            "start": start.isoformat(),
-            "end": end.isoformat(),
-            "note": note,
-            "type": session_type
-        } 
+    study_data = {
+        "start": start.isoformat(),
+        "end": end.isoformat(),
+        "note": note,
+        "type": session_type,
+    }
     append_json_session(study_data=study_data)
     award_progress(session_duration_minutes(start, end))
 
@@ -155,8 +146,12 @@ def count_saved_hours(path: Path = Path("data/focus_data.json")) -> timedelta:
 
 def calculate_average_session_length(path: Path = Path("data/focus_data.json")) -> timedelta:
     total_hours = count_saved_hours(path)
-    
-    return total_hours / get_session_count(path)
+    session_count = get_session_count(path)
+
+    if session_count == 0:
+        return timedelta()
+
+    return total_hours / session_count
 
 def get_session_count(path: Path = Path("data/focus_data.json")) -> int:
     data = load_json_list(path)

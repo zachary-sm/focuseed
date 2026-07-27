@@ -16,6 +16,9 @@ def start_countdown(minutes: int, note: str):
             note: The note that the user can view with the session.
     """
     
+    if minutes < 0:
+        raise ValueError("Countdown minutes must be 0 or greater.")
+
     start_time = datetime.now()
     target_seconds = minutes * 60
     

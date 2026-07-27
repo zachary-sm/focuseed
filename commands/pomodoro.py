@@ -8,7 +8,11 @@ def start_pomodoro(focus_minutes: int,
                    long_break_minutes: int, 
                    sessions_before_long_break: int,
                    note: str):
-    
+    if min(focus_minutes, short_break_minutes, long_break_minutes) < 0:
+        raise ValueError("Pomodoro durations must be 0 minutes or greater.")
+    if sessions_before_long_break < 1:
+        raise ValueError("Sessions before a long break must be at least 1.")
+
     session_number = 1
     while True:
         print(f"Started Pomodoro session #{session_number}")
@@ -30,10 +34,10 @@ def start_pomodoro(focus_minutes: int,
         try:
             if (session_mod != 0):
                 print(f"Started short break timer. Focus sessions until long break: {sessions_before_long_break - session_mod}")
-                countdown_timer(short_break_minutes)
+                countdown_timer(short_break_minutes * 60)
             else:
                 print(f"Started long break timer!")
-                countdown_timer(long_break_minutes)
+                countdown_timer(long_break_minutes * 60)
         except KeyboardInterrupt:
             break
 

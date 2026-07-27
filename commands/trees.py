@@ -13,4 +13,4 @@ def show_trees(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Pa
 
     print_bold("Owned trees:")
     for tree_key in owned_trees_dict:
-        print(f"{tree_data[tree_key]["name"]} x{shop_data["owned_trees"][tree_key]}")
+        print(f"{tree_data[tree_key]['name']} x{shop_data['owned_trees'][tree_key]}")

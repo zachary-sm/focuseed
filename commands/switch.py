@@ -10,5 +10,5 @@ def switch_tree(shop_data_path: Path = Path("data/shop_data.json"), tree_path: P
     owned_trees_set = set(get_json_field(field="owned_trees", path=shop_data_path))
 
     choice = get_choice(prompt="Which tree would you like to plant?", choices=owned_trees_set)
-    print(f"Chosen {tree_data[choice]["name"]}")
-    save_to_json_field(field="tree_selected", item=choice, path=Path("data/shop_data.json"))
+    print(f"Chosen {tree_data[choice]['name']}")
+    save_to_json_field(field="tree_selected", item=choice, path=shop_data_path)

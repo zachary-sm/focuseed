@@ -1,5 +1,6 @@
 import unittest
-from utils.timer_tools import format_minutes, format_seconds
+from unittest.mock import call, patch
+from utils.timer_tools import countdown_timer, format_minutes, format_seconds
 
 class TestFormatMinutes(unittest.TestCase):
     def test_under_one_hour(self):
@@ -44,6 +45,25 @@ class TestFormatSeconds(unittest.TestCase):
     def test_negative_seconds(self):
         with self.assertRaises(ValueError):
             format_seconds(-52)
+
+
+class TestCountdownTimer(unittest.TestCase):
+    def test_countdown_sleeps_once_per_requested_second(self):
+        with (
+            patch("utils.timer_tools.print_and_clear") as mock_print,
+            patch("utils.timer_tools.time.sleep") as mock_sleep,
+        ):
+            countdown_timer(2)
+
+        self.assertEqual(
+            mock_print.call_args_list,
+            [call("0m 2s"), call("0m 1s"), call("0m 0s")],
+        )
+        self.assertEqual(mock_sleep.call_count, 2)
+
+    def test_negative_countdown_seconds_are_rejected(self):
+        with self.assertRaises(ValueError):
+            countdown_timer(-1)
 
 
 if __name__ == "__main__":

@@ -70,5 +70,5 @@ def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_
         utils.save_tools.save_to_json_field(
             "owned_trees",
             owned_trees_dict,
-            Path("data/shop_data.json")
+            shop_data_path
         )
