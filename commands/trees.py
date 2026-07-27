@@ -1,8 +1,9 @@
 from pathlib import Path
 from utils.save_tools import load_json_dict
 from utils.formatting_tools import print_bold
+from constants import ASSETS_DIR
 
-def show_trees(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Path = Path("assets/shop_trees.json")):
+def show_trees(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Path = ASSETS_DIR / "shop_trees.json"):
     """
         Shows the user a list of their owned trees with a visual bar representation.
     """

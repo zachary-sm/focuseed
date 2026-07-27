@@ -2,7 +2,6 @@ from datetime import datetime
 from utils.timer_tools import countdown_timer
 from utils.save_tools import save_session
 
-# TODO: Add auto start 
 def start_pomodoro(focus_minutes: int, 
                    short_break_minutes: int, 
                    long_break_minutes: int, 

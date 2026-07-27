@@ -13,7 +13,7 @@ def main():
 
     # ARGPARSES:
     # stopwatch command
-    stopwatch = subparsers.add_parser("stopwatch")
+    stopwatch = subparsers.add_parser("stopwatch", help="Track focus time until you stop it.")
     stopwatch.add_argument("--minutes", type=int, help="Minumum study time in minutes", default=30)
     stopwatch.add_argument(
         "--note",
@@ -23,7 +23,7 @@ def main():
     )
     
     # countdown command
-    countdown = subparsers.add_parser("countdown")
+    countdown = subparsers.add_parser("countdown", help="Run a timed focus session.")
     countdown.add_argument("--minutes", type=int, help="Length of countdown in minutes", default=30)
     countdown.add_argument(
         "--note",
@@ -33,7 +33,7 @@ def main():
     )
 
     # pomodoro command
-    pomodoro = subparsers.add_parser("pomodoro")
+    pomodoro = subparsers.add_parser("pomodoro", help="Run repeating focus and break sessions.")
     pomodoro.add_argument("--minutes", type=int, help="Length of focus in minutes", default=25)
     pomodoro.add_argument("--short-break", type=int, help="Length of the short break in minutes", default=5)
     pomodoro.add_argument("--long-break", type=int, help="Length of long break in minutes", default=15)
@@ -46,32 +46,43 @@ def main():
     )
 
     # stats command
-    stats = subparsers.add_parser("stats")
+    stats = subparsers.add_parser("stats", help="Show focus-time statistics.")
 
     # log command
-    log = subparsers.add_parser("log")
+    log = subparsers.add_parser("log", help="Show recent focus sessions.")
     log.add_argument("--count", type=int, help="Amount of most recent messages to display", default=5)
 
     # shop command
-    shop = subparsers.add_parser("shop")
+    shop = subparsers.add_parser("shop", help="View and buy trees.")
 
     # trees command
-    trees = subparsers.add_parser("trees")
+    trees = subparsers.add_parser("trees", help="List owned trees.")
 
     # balance command
-    balance = subparsers.add_parser("balance")
+    balance = subparsers.add_parser("balance", help="Show the current Growbux balance.")
 
     # version command
     parser.add_argument("--version", action="version",version=f"focuseed {constants.VERSION}")
 
     # switch command
-    balance = subparsers.add_parser("switch")
+    switch = subparsers.add_parser("switch", help="Choose the tree to grow next.")
 
     # tree command
-    tree = subparsers.add_parser("tree")
+    tree = subparsers.add_parser("tree", help="Show the currently selected tree.")
+
+    help_command_names = list(subparsers.choices)
+    help_command = subparsers.add_parser("help", help="Show help for all commands or one command.")
+    help_command.add_argument("topic", nargs="?", choices=help_command_names, help="Command to describe")
     
     # The command line input
     args = parser.parse_args()
+
+    if args.command == "help":
+        if args.topic is not None:
+            subparsers.choices[args.topic].print_help()
+        else:
+            parser.print_help()
+        return
 
     match args.command:
         case "stopwatch":

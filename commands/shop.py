@@ -2,9 +2,10 @@ import utils.save_tools
 import utils.formatting_tools
 import utils.economy_tools
 from pathlib import Path
+from constants import ASSETS_DIR
 
 
-def view_shop(shop_trees_path: Path = Path("assets/shop_trees.json"), shop_data_path: Path = Path("data/shop_data.json"), default_shop_data_path=Path("assets/shop_data_default.json")):
+def view_shop(shop_trees_path: Path = ASSETS_DIR / "shop_trees.json", shop_data_path: Path = Path("data/shop_data.json"), default_shop_data_path=ASSETS_DIR / "shop_data_default.json"):
     """
     Displays all available trees in the shop and allows the user to purchase one.
 

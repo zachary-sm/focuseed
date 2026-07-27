@@ -1,5 +1,6 @@
 import constants
 from pathlib import Path
+from constants import ASSETS_DIR
 from utils.save_tools import save_to_json_field, get_json_field
 
 SHOP_DATA_PATH = "data/shop_data.json"
@@ -25,7 +26,7 @@ def change_tree_progress(minutes: int):
 
     current_progress = get_json_field(field="tree_progress", path=Path("data/shop_data.json"))
     current_tree = get_json_field(field="tree_selected", path=Path("data/shop_data.json"))
-    tree_dict = get_json_field(field=current_tree, path=Path("assets/shop_trees.json"))
+    tree_dict = get_json_field(field=current_tree, path=ASSETS_DIR / "shop_trees.json")
     growth_time = tree_dict["growth_time"]
 
     new_progress = minutes + current_progress

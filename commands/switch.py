@@ -1,8 +1,9 @@
 from pathlib import Path
 from utils.save_tools import load_json_dict, get_json_field, save_to_json_field
 from utils.formatting_tools import get_choice
+from constants import ASSETS_DIR
 
-def switch_tree(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Path = Path("assets/shop_trees.json")):
+def switch_tree(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Path = ASSETS_DIR / "shop_trees.json"):
     """
         Allows the user to switch to a tree to plant
     """

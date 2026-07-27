@@ -10,7 +10,34 @@ A gamified CLI focus app. Create focus countdowns/stopwatches, view history, kee
 
 ## Installation
 
-TBD
+Focuseed requires Python 3.12 or later and has no third-party dependencies.
+
+From a cloned repository, install it with:
+
+```bash
+python -m pip install .
+```
+
+Then run:
+
+```bash
+focuseed --help
+```
+
+For example, start a 25-minute countdown with:
+
+```bash
+focuseed countdown --minutes 25 --note "Study session"
+```
+
+Available commands include `stopwatch`, `countdown`, `pomodoro`, `log`,
+`stats`, `shop`, `trees`, `tree`, `switch`, and `balance`.
+
+To run the unit tests:
+
+```bash
+python -m unittest discover -v
+```
 
 ## Project Structure
 

@@ -1,8 +1,9 @@
 from pathlib import Path
 from utils.formatting_tools import print_bold
 from utils.save_tools import load_json_dict, get_json_field
+from constants import ASSETS_DIR
 
-def show_tree(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Path = Path("assets/shop_trees.json")):
+def show_tree(shop_data_path: Path = Path("data/shop_data.json"), tree_path: Path = ASSETS_DIR / "shop_trees.json"):
     selected_tree = get_json_field("tree_selected", shop_data_path)
     progress = get_json_field("tree_progress", shop_data_path)
     tree_field = get_json_field(selected_tree, tree_path)
