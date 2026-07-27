@@ -21,38 +21,45 @@ The philosophy behind Focuseed's design is to provide a minimalist approach to p
 - 🌱 Virtual plants that grow as you focus
 - 🪙 Coin system and in-app shop
 
-## Technical Decisions
+## Command-Line Interface
 
-### Command-Line Interface
+Focuseed was designed as a command-line application to provide a simple, distraction-free, and efficient interface. By avoiding unnecessary graphical elements and menus, the application reduces distractions within the tool itself and allows users to quickly start and manage focus sessions. A CLI design also keeps the application lightweight and makes it easier to run on a wider range of systems, including older hardware.
 
-Focuseed was designed as a command-line application in order to keep it distraction-free and quick to use. Many people often find themselves wandering around on the internet or on their computer with GUI tools, and being a CLI application reduces this urge. In addition, it is more lightweight as a CLI tool and can run more easily on older systems to maximize productivity for the user.
+## Python
 
-### Python
+Python was chosen because of its readability, modularity, and extensive standard libraries, which make the application easier for other developers to understand, modify, and extend in the future. Python's large ecosystem also provides access to many existing tools and libraries that support development.
 
-Python was chosen due to its readability, modularity, and standard language libraries which make it easier for other developers to expand on it in the future or to customize the code for their own use case. Python was also chosen because of its portability. Because it uses an interprerer, it can run on a wider variety of machines than if it was compiled.
+Python was also selected because of its portability. Since Python applications run through an interpreter, Focuseed can operate across different platforms as long as a compatible Python environment is available.
 
-### Local-First Design
+## Local-First Design
 
-Keeping it entirely local allows the application to be more lightweight and for the user to focus without worrying about having an internet connection. This also keeps the application lightweight and private so the user feels more compelled to use the app to focus without fearing others may see it which ties into the central design goal of having as little friction as possible for being productive.
+Focuseed follows a local-first design approach, meaning that the application does not depend on external servers or an internet connection for its core functionality. This allows users to access their productivity tools reliably while keeping their data stored locally.
 
-### Gamification System
+Storing data locally also improves privacy by reducing the need to transmit personal productivity information to external services. This supports the application's goal of minimizing friction and allowing users to focus without concerns about unnecessary data sharing.
 
-The gamification features were designed to encourage consistency without distracting from the main purpose of the application. They were kept as intuitive and unobtrusive as possible while still encouraging the user to be productive. Features such as streaks, coins, and virtual plants provide users with visible progress and motivation while keeping focus sessions simple. The user has to go out of their way to view their stats in the gamified features, so they are also easy to ignore if a user would prefer not to use them.
+## Gamification System
 
-### Minimal Feature Set
+The gamification features in Focuseed were designed to provide optional motivation and visible progress without interfering with the main focus workflow. Features such as streaks, coins, and virtual plants give users feedback on their consistency and progress while keeping focus sessions simple.
 
-Each feature in Focuseed was chosen based on whether it directly supports productive work or user engagement. The amount of commands chosen is the sweet spot where there are enough to cover a broad range of productivity functions but few enough to not get in the way of focus or the scope of the app. Avoiding unnecessary functionality keeps the application easy to learn while allowing experienced users to quickly return to a focus session without worrying about clicking through several interfaces.
+The gamification system is intentionally unobtrusive. Users can choose to interact with these features when they want additional motivation, while users who prefer a minimal experience can continue using the core focus functionality without relying on them.
 
-### Local Data Storage
+## Minimal Feature Set
 
-Focuseed uses JSON files to store user progress, statistics, and game data. Since the application is designed for individual users and does not require complex data relationships, JSON provides a lightweight and human-readable solution without introducing unnecessary database complexity.
+Each feature in Focuseed was selected based on whether it directly supports productivity or improves user engagement. The number of commands was intentionally limited to provide useful functionality while avoiding unnecessary complexity.
 
-That implementation keeps the application easy to set up, portable, and simple to maintain while still allowing user data to persist between sessions.
+By maintaining a focused feature set, the application remains easier to learn and allows users to quickly return to their work without navigating through excessive menus or options.
 
-### Project Structure
+## Local Data Storage
 
-The project is organized into separate modules for commands, utilities, application data, and tests. This separation keeps responsibilities clear, improves maintainability, and makes future changes easier to implement.
+Focuseed uses JSON files to store user progress, statistics, and gamification data. Since the application is designed for individual users and does not require complex relationships between large amounts of data, JSON provides a lightweight and human-readable storage solution. It also allows the user to easily edit their save manually if it fits their usage.
 
+This approach allows user data to persist between sessions while keeping the application simple to set up, portable, easy to maintain.
+
+## Project Structure
+
+The project is organized into separate modules for commands, utilities, application data, and tests. This separation keeps different responsibilities organized and improves maintainability.
+
+A modular structure also makes future development easier by allowing individual components to be updated or expanded without requiring major changes throughout the entire application.
 ## Requirements
 
 - Python 3.12 or later
