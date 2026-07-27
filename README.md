@@ -14,7 +14,6 @@
 - ⌚ Stopwatch mode
 - 🍅 Built-in Pomodoro timer
 - 📊 Focus history and statistics
-- 🔥 Daily streak tracking
 - 🌱 Virtual plants that grow as you focus
 - 🪙 Coin system and in-app shop
 
